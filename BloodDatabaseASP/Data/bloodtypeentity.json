@@ -1,0 +1,50 @@
+[
+  {
+    "BloodTypeID": 1,
+    "BloodTypeName": "1-",
+    "ABO": "0",
+    "Resus": false
+  },
+  {
+    "BloodTypeID": 2,
+    "BloodTypeName": "1+",
+    "ABO": "0",
+    "Resus": true
+  },
+  {
+    "BloodTypeID": 3,
+    "BloodTypeName": "2-",
+    "ABO": "A",
+    "Resus": false
+  },
+  {
+    "BloodTypeID": 4,
+    "BloodTypeName": "2+",
+    "ABO": "A",
+    "Resus": true
+  },
+  {
+    "BloodTypeID": 5,
+    "BloodTypeName": "3-",
+    "ABO": "B",
+    "Resus": false
+  },
+  {
+    "BloodTypeID": 6,
+    "BloodTypeName": "3+",
+    "ABO": "B",
+    "Resus": true
+  },
+  {
+    "BloodTypeID": 7,
+    "BloodTypeName": "4-",
+    "ABO": "AB",
+    "Resus": false
+  },
+  {
+    "BloodTypeID": 8,
+    "BloodTypeName": "4+",
+    "ABO": "AB",
+    "Resus": true
+  }
+]

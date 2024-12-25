@@ -1,0 +1,31 @@
+﻿@model IEnumerable<BloodDatabaseASP.Models.BloodTypeEntity>
+
+@{
+    ViewData["Title"] = "Blood Type";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Blood Type</h1>
+</div>
+
+<table class="table mt-4">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>ABO</th>
+            <th>Resus</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var bloodtype in Model)
+        {
+            <tr>
+                <td>@bloodtype.BloodTypeID</td>
+                <td>@bloodtype.BloodTypeName</td>
+                <td>@bloodtype.ABO</td>
+                <td>@(bloodtype.Resus ? "Positive" : "Negative")</td>
+            </tr>
+        }
+    </tbody>
+</table>

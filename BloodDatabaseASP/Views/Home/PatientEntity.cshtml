@@ -1,0 +1,31 @@
+﻿@model IEnumerable<dynamic>
+
+@{
+    ViewData["Title"] = "Patients Records";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Patients</h1>
+</div>
+
+<table class="table table-striped mt-4">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Gender</th>
+            <th>Blood Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var patient in Model)
+        {
+            <tr>
+                <td>@patient.PatientID</td>
+                <td>@patient.PatientName</td>
+                <td>@patient.PatientGender</td>
+                <td>@patient.BloodTypeName</td>
+            </tr>
+        }
+    </tbody>
+</table>

@@ -1,0 +1,81 @@
+﻿@model List<BloodDatabaseASP.Models.RecordEntity>
+
+@{
+    ViewData["Title"] = "Records";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Records</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="RecordEntity" asp-controller="Home" method="post">
+
+            <h4>Filter by Patient</h4>
+            <select class="form-control" name="patientId">
+                <option value="">-- Select Patient --</option>
+                @foreach (var patient in (List<BloodDatabaseASP.Models.PatientEntity>)ViewBag.Patients)
+                {
+                    <option value="@patient.PatientID">@patient.PatientName</option>
+                }
+            </select>
+
+            <h4>Filter by Blood Type</h4>
+            <select class="form-control" name="bloodTypeId">
+                <option value="">-- Select Blood Type --</option>
+                @foreach (var bloodType in (List<BloodDatabaseASP.Models.BloodTypeEntity>)ViewBag.BloodTypes)
+                {
+                    <option value="@bloodType.BloodTypeID">@bloodType.BloodTypeName</option>
+                }
+            </select>
+
+            <h4>Filter by Date</h4>
+            <input type="date" class="form-control" name="date" />
+            <button class="btn btn-primary mt-2" type="submit">Filter</button>
+        </form>
+    </div>
+</div>
+
+<hr />
+
+<div class="mt-4">
+    @if (!Model.Any())
+    {
+        <div class="alert alert-warning text-center">
+            No records found.
+        </div>
+    }
+    else
+    {
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Record ID</th>
+                    <th>Patient Name</th>
+                    <th>Blood Type</th>
+                    <th>Quantity (ml)</th>
+                    <th>Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var record in Model)
+                {
+                    var patient = ((List<BloodDatabaseASP.Models.PatientEntity>)ViewBag.Patients).FirstOrDefault(p => p.PatientID == record.PatientID);
+                    var bloodType = patient != null ?
+                    ((List<BloodDatabaseASP.Models.BloodTypeEntity>)ViewBag.BloodTypes).FirstOrDefault(b => b.BloodTypeID == patient.BloodTypeID) : null;
+
+                    <tr>
+                        <td>@record.RecordID</td>
+                        <td>@patient?.PatientName</td>
+                        <td>@bloodType?.BloodTypeName</td>
+                        <td>@record.Quantity</td>
+                        <td>@record.DateTime.ToString("yyyy-MM-dd")</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="AddRecordForm">Add record</a>
+    <a class="btn btn-primary" asp-area="" asp-controller="Home" asp-action="DeleteRecordForm">Delete record</a>
+</div>

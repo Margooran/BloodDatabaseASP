@@ -1,0 +1,46 @@
+﻿@model List<BloodDatabaseASP.Models.RecordEntity>
+
+@{
+    ViewData["Title"] = "Delete Records";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Delete Records</h1>
+</div>
+
+@if (TempData["SuccessMessage"] != null)
+{
+    <div class="alert alert-success mt-4">
+        @TempData["SuccessMessage"]
+    </div>
+}
+
+<form asp-action="DeleteRecords" asp-controller="Home" method="post">
+    <table class="table table-bordered mt-4">
+        <thead>
+            <tr>
+                <th scope="col">Select</th>
+                <th scope="col">Record ID</th>
+                <th scope="col">Patient ID</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Date</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var record in Model)
+            {
+                <tr>
+                    <td>
+                        <input type="checkbox" name="selectedIds" value="@record.RecordID" />
+                    </td>
+                    <td>@record.RecordID</td>
+                    <td>@record.PatientID</td>
+                    <td>@record.Quantity</td>
+                    <td>@record.DateTime.ToString("yyyy-MM-dd HH:mm")</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <button class="btn btn-danger mt-4" type="submit">Delete Selected Records</button>
+</form>

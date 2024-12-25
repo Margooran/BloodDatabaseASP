@@ -1,0 +1,55 @@
+﻿@model List<BloodDatabaseASP.Models.RecordEntity>
+
+@{
+    ViewData["Title"] = "Summary";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Summary</h1>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Summary" asp-controller="Home" method="post">
+            <h4>Select Patient</h4>
+            <select class="form-control" name="patientId">
+                <option value="">-- Select Patient --</option>
+                @foreach (var patient in (List<BloodDatabaseASP.Models.PatientEntity>)ViewBag.Patients)
+                {
+                    <option value="@patient.PatientID">@patient.PatientName</option>
+                }
+            </select>
+            <button class="btn btn-primary mt-2" type="submit">Get Total</button>
+        </form>
+    </div>
+
+    <div class="col-md-4">
+        <form asp-action="Summary" asp-controller="Home" method="post">
+            <h4>Select Blood Type</h4>
+            <select class="form-control" name="bloodTypeId">
+                <option value="">-- Select Blood Type --</option>
+                @foreach (var bloodType in (List<BloodDatabaseASP.Models.BloodTypeEntity>)ViewBag.BloodTypes)
+                {
+                    <option value="@bloodType.BloodTypeID">@bloodType.BloodTypeName</option>
+                }
+            }
+            </select>
+            <button class="btn btn-primary mt-2" type="submit">Get Total</button>
+        </form>
+    </div>
+
+    <div class="col-md-4">
+        <form asp-action="Summary" asp-controller="Home" method="post">
+            <h4>Select Date</h4>
+            <input type="date" class="form-control" name="date" />
+            <button class="btn btn-primary mt-2" type="submit">Get Total</button>
+        </form>
+    </div>
+</div>
+
+@if (ViewBag.TotalQuantity != null)
+{
+    <div class="alert alert-info mt-4">
+        <strong>Total Blood Donated: </strong>@ViewBag.TotalQuantity ml
+    </div>
+}
